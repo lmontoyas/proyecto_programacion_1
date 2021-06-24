@@ -16,7 +16,6 @@ Mostrar menu /
 Mostrar el tablero /
 Mostrar puntajes /
 Mostrar tiempos
-#### Ejecutable
 #### Menu
 Controlador del menu /
 Ingresar posiciones /
@@ -28,3 +27,4 @@ Controlador del puntaje
 Controla las celdas /
 Controla las filas /
 Controla columnas
+#### Ejecutable / Main
