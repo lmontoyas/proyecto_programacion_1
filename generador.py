@@ -55,7 +55,10 @@ def generate(matrix, n):
         x, y = cords(i, N)
         matrix[y][x] = val
 
-    pistas_size = 17 if n == 3 else 5 
+    show(matrix)
+    print()
+
+    pistas_size = 17 if n == 3 else 5
     pistas = [randint(0,N**2 - 1) for _ in range(pistas_size)]
     pistas = [cords(elem, N) for elem in pistas]
 
@@ -70,6 +73,11 @@ def show(matrix):
         print()
 
 #### test
+
+def init(n):
+    emp = empty_matrix(n**2)
+    generate(emp, n)
+    return emp
 
 def test(n):
     emp = empty_matrix(n**2)
