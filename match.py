@@ -2,6 +2,7 @@ from generador import init
 from display import mostrar
 from generador import validar
 from jugada import operar
+from jugada import is_over
 
 def turno(tablero, n, mensaje):
 
@@ -18,14 +19,12 @@ def turno(tablero, n, mensaje):
 
     return operar(F, C, V, tablero, n)
 
-def is_fin(tablero):
-    return False
-
 def nivel(nivel):
     n = 3 if nivel == "dificil" else 2
     tablero = init(n)
     msj = ""
-    while not is_fin(tablero):
+    print(is_over(tablero))
+    while not is_over(tablero):
         msj = turno(tablero, n, msj)
 
 nivel("dificil")

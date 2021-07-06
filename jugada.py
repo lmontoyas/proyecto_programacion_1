@@ -36,3 +36,10 @@ def operar(F, C, V, tablero, n):
     if msj: return msj
 
     return "Todo good"
+
+def is_over(tablero):
+    for row in tablero:
+        for val in row:
+            if val == 0:
+                return False
+    return True
