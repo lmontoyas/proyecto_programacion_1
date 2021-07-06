@@ -55,8 +55,8 @@ def generate(matrix, n):
         x, y = cords(i, N)
         matrix[y][x] = val
 
-    show(matrix)
-    print()
+    #show(matrix)
+    #print()
 
     pistas_size = 17 if n == 3 else 5
     pistas = [randint(0,N**2 - 1) for _ in range(pistas_size)]
@@ -87,5 +87,3 @@ def test(n):
 
 def main():
     test(3)
-
-main()

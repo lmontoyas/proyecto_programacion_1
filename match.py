@@ -10,4 +10,4 @@ def nivel(nivel):
     tablero = init(n)
     mostrar(tablero, n)
 
-nivel("dificil")
+nivel("ez")
