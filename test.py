@@ -50,9 +50,9 @@ def dfs(inis, ans, n):
 
 def generate(matrix, n):
     N = n ** 2
-    cl = N*N // n
+    cl = 17 if n == 3 else 5 
     inis = [randint(0,N**2 - 1) for _ in range(cl)]
-    vals = dfs(inis, [randint(1, N)], n)
+    vals = dfs(inis, [], n)
     print(vals)
 
     for i in range(cl):
