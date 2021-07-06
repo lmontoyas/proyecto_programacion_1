@@ -30,11 +30,11 @@ def validar(inis, ans, n):
 
     return True
 
-def dfs(inis, ans, n, size):
+def dfs(inis, ans, n):
     N = n ** 2
     if not validar(inis, ans, n):
         return False
-    if len(ans) == size:
+    if len(ans) == len(inis):
         return ans
     shift = randint(0, N - 1)
     for i in range(N):
@@ -42,8 +42,8 @@ def dfs(inis, ans, n, size):
         val %= N
         val += 1
         newans = ans[:]
-        newans.append(v)
-    newans = dfs(inis, newans, n, size)
+        newans.append(val)
+        newans = dfs(inis, newans, n)
         if newans:
             return newans
     return False
