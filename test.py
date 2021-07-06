@@ -16,7 +16,7 @@ def validar(inis, ans, n):
 
     for i in range(len(ans)):
         x,y = cords(inis[i], N)
-        c = x//3 + y - y%3
+        c = x//n + y - y%n
         v = ans[i]
         if v in I[x]:
             return False
@@ -50,7 +50,7 @@ def dfs(inis, ans, n):
 
 def generate(matrix, n):
     N = n ** 2
-    cl = N*N // 3
+    cl = N*N // n
     inis = [randint(0,N**2 - 1) for _ in range(cl)]
     vals = dfs(inis, [randint(1, N)], n)
     print(vals)
@@ -69,7 +69,7 @@ def show(matrix):
 
 #### test
 
-n = 3
+n = 2
 emp = empty_matrix(n**2)
 show(emp)
 generate(emp, n)
