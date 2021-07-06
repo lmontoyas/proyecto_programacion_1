@@ -16,6 +16,8 @@ def validar(ans, n):
         x,y = cords(i, N)
         c = x//n + y - y%n
         v = ans[i]
+        if not v:
+            continue
         if v in I[x]:
             return False
         if v in J[y]:

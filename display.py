@@ -4,14 +4,14 @@ def separador(n, j):
 def format(n, j, sep, esp):
     N = n ** 2
     if separador(n,j):
-        print(esp+sep, end="")
+        print(sep, end="")
 
 def printfila(fila, n, begin, sep, esp):
     print(begin, end="   ")
     N = n ** 2
     for j in range(N):
-        if j: print(esp, end="")
-        print(fila[j], end="")
+        if j%n: print(esp, end="")
+        print(fila[j] or " ", end="")
         format(n, j, sep, esp)
     print()
 
@@ -22,4 +22,4 @@ def mostrar(matrix, n):
     for i in range(N):
         printfila(matrix[i], n, i + 1, "|", ' ')
         if separador(n, i):
-            printfila('-'*N,n, " ", "|", '-')
+            printfila('-'*N,n, " ", "+", '-')
