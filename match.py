@@ -44,18 +44,26 @@ def turno(tablero, n, mensaje, pistas):
 def nivel(nivel):
     n = nivel
 
+    green = Fore.GREEN
+    white = Fore.WHITE
+
     tablero, pistas = init(n)
     msj = ""
-    print(is_over(tablero))
     while not is_over(tablero):
         msj = turno(tablero, n, msj, pistas)
 
-    clear()
-    mostrar(tablero,n,pistas)
-    print()
-    print("Felicidades te ganaste 1000 soles")
 
-def pantalla(msj=""):
+    image = """  ________  ________
+ /  _____/ /  _____/ .
+/   \  ___/   \  ___
+\    \_\  \    \_\  \ .
+ \______  /\______  / .
+        \/        \/ """
+
+    pantalla("", image, 1000)
+
+def pantalla(msj="", image=False, ganaste=False):
+
 
     clear()
 
@@ -64,9 +72,12 @@ def pantalla(msj=""):
     white = Fore.WHITE
     red = Fore.RED
 
+    if ganaste:
+        print(green+"Hiciste 1000 puntos. Jugar de nuevo?"+white)
+
     error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
 
-    imagen="""                 .___      __
+    imagen=image or """                 .___      __
   ________ __  __| _/____ |  | ____ __
  /  ___/  |  \/ __ |/  _ \|  |/ /  |  \ .
  \___ \|  |  / /_/ (  <_> )    <|  |  /
@@ -87,8 +98,9 @@ def pantalla(msj=""):
     print(msj)
     n = input("Elija opción: ")
     if not n in ['1','2','3']:
-        pantalla(error_opcion)
+        pantalla(error_opcion, image, ganaste)
     n = int(n) + 1
-    nivel(n)
+    if n != 4:
+        nivel(n)
 
 pantalla()
