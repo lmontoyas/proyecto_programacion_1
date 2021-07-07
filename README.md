@@ -6,7 +6,7 @@
 3. [Menu](#menu)
 4. [Puntaje](#puntaje)
 5. [Verificador](#verificador)
-6. [Ejecutable / Main](#ejecutable-/-main)
+6. [Main](#main)
 
 ## Estructura
 ### Modulos:
@@ -266,7 +266,7 @@ Controlador del puntaje
 Controla las celdas /
 Controla las filas /
 Controla columnas
-#### Ejecutable / Main
+#### Main
 
     from generador import validar
     from colorama import Fore
