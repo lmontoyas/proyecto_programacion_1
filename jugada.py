@@ -30,16 +30,23 @@ def parse(F,C,V,N):
 
 def operar(F, C, V, tablero, n, pistas):
 
+    # El puntaje es proporcional al valor ingresado
+    # Valor * Po puntos ganados
+    # Si ingresa un valor erroneo pierde Pe puntos
+
+    Pe = -200 #Puntaje de penalidad
+    Po = 100 #Puntaje obtenido
+
     error_jugada = Fore.LIGHTRED_EX + "Jugada no valida" + Fore.WHITE
 
     N = n ** 2
 
     F,C,V,msj = parse(F,C,V,N)
 
-    if msj: return msj
+    if msj: return msj, Pe
 
     if (C,F) in pistas:
-        return error_jugada
+        return error_jugada, Pe
 
     rama = []
     for row in tablero:
@@ -48,11 +55,17 @@ def operar(F, C, V, tablero, n, pistas):
     rama[F*N+C] = V
 
     if not validar(rama, n):
-        return error_jugada
+        return error_jugada, Pe
+
+    # Si ya había un elemento antes en
+    # el tablero, se calcula como la diferencia
+    # este valor puede ser negativo
+
+    Po = Po*(V - tablero[F][C])
 
     tablero[F][C] = V
 
-    return Fore.GREEN + "Jugada válida ✓" + Fore.WHITE
+    return Fore.GREEN + "Jugada válida ✓" + Fore.WHITE, Po
 
 def is_over(tablero):
     for row in tablero:
