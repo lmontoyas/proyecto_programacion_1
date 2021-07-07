@@ -2,6 +2,7 @@ from generador import init
 from display import mostrar
 from jugada import operar
 from jugada import is_over
+from colorama import Fore
 
 def clear():
     print("\x1b[2J\x1b[H",end="")
@@ -34,17 +35,41 @@ def nivel(nivel):
     print()
     print("Felicidades te ganaste 1000 soles")
 
-def pantalla():
+def pantalla(msj=""):
 
     clear()
 
-    #print(imagen)
-    print('Seleccionar dificultad:')
-    print("1. Fácil: Tablero 4x4")
-    print("2. Dificil: Tablero 9x9")
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    white = Fore.WHITE
+    red = Fore.RED
+
+    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
+
+    imagen="""                 .___      __
+  ________ __  __| _/____ |  | ____ __
+ /  ___/  |  \/ __ |/  _ \|  |/ /  |  \ .
+ \___ \|  |  / /_/ (  <_> )    <|  |  /
+/____  >____/\____ |\____/|__|_ \____/
+     \/           \/           \/"""
+
+    print(imagen)
+    print()
+    print(blue+'Seleccionar dificultad:'+white)
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print()
+    print("Opción ("+blue+"1"+white+")"+green+" Fácil: "+white+"TABLERO 4x4")
+    print()
+    print("Opción ("+blue+"2"+white+")"+green+" Dificil: "+white+"TABLERO 9x9")
+    print()
+    print("Opción ("+blue+"3"+white+")"+blue+" SALIR"+white)
+    print()
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     n = 0
-    while not n in ['1','2']:
-        n = input("Nivel(1/2): ")
+    print(msj)
+    n = input("Elija opción: ")
+    if not n in ['1','2','3']:
+        pantalla(error_opcion)
     n = int(n) + 1
     nivel(n)
 
