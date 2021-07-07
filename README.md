@@ -1,4 +1,7 @@
-# Proyecto: Sudoku
+# Sudoku: Proyecto de laboratorio de Programación I
+
+![Alt text](Screenshot%20from%202021-07-06%2022-10-49.png?raw=true "Title")
+
 ### Programación I Lab 303 UTEC 2021
 ## Participantes:
 Luis Golac
