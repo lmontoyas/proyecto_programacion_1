@@ -1,3 +1,5 @@
+from generador import validar
+
 def parse(F,C,V,N):
 
     error_casilla= "Ingresar casilla válida"
@@ -35,7 +37,21 @@ def operar(F, C, V, tablero, n):
 
     if msj: return msj
 
-    return "Todo good"
+    if tablero[F][C]:
+        return error_jugada
+
+    rama = []
+    for row in tablero:
+        rama += row[:]
+
+    rama[F*N+C] = V
+
+    if not validar(rama, n):
+        return error_jugada
+
+    tablero[F][C] = V
+
+    return "Siguiente Turno"
 
 def is_over(tablero):
     for row in tablero:

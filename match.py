@@ -1,6 +1,5 @@
 from generador import init
 from display import mostrar
-from generador import validar
 from jugada import operar
 from jugada import is_over
 
