@@ -8,7 +8,7 @@
 5. [Verificador](#verificador)
 6. [Ejecutable / Main](#ejecutable-/-main)
 
-![Alt text](Screenshot%20from%202021-07-07%2009-45-12.png?raw=true "Title")
+![Alt text](images/main.png?raw=true "Title")
 
 ## Participantes:
 Luis Golac  
@@ -16,9 +16,9 @@ Jorge Miranda
 Lyam Cáceres  
 Leonardo Montoya  
 
-![Alt text](Screenshot%20from%202021-07-07%2009-45-45.png?raw=true "Title")
-![Alt text](Screenshot%20from%202021-07-07%2009-45-56.png?raw=true "Title")
-![Alt text](Screenshot%20from%202021-07-07%2009-47-11.png?raw=true "Title")
+![Alt text](images/hardmode.png?raw=true "Title")
+![Alt text](images/ezmode.png?raw=true "Title")
+![Alt text](images/endgame.png?raw=true "Title")
 
 
 ## Estructura
