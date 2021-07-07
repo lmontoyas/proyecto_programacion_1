@@ -1,4 +1,13 @@
-## Sudoku | Programación I Lab 303 UTEC 2021
+# Sudoku | Programación I Lab 303 UTEC 2021
+
+## Tabla de contenido:
+1. [Crear tablero](#crear-tablero)
+2. Display
+3. Menú
+4. Puntaje
+5. Verificador
+6. Ejecutable / Main
+
 ![Alt text](Screenshot%20from%202021-07-07%2009-45-12.png?raw=true "Title")
 
 ## Participantes:
