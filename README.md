@@ -13,6 +13,31 @@
 
 En el módulo `generador.py` se encuentran las funciones que generan el tablero inicial de sudoku.
 
+### DFS
+
+Depth Breadth Search (Búsqueda por profundidad), usualmente es un algoritmo usado para operar sobre estructuras de datos que presentan características de Grafo.
+
+
+```python
+def dfs(ans, n):
+    N = n ** 2
+    if not validar(ans, n):
+        return False
+    if len(ans) == N*N:
+        return ans
+    shift = randint(0, N - 1)
+    for i in range(N):
+        val = shift + i
+        val %= N
+        val += 1
+        newans = ans[:]
+        newans.append(val)
+        newans = dfs(newans, n)
+        if newans:
+            return newans
+    return False
+```
+
 ### Matriz de N x N
 
 Empieza con la función `empty_matrix`, esta función retorna una matriz de `NxN`
@@ -60,23 +85,6 @@ def cords(val, N):
 Crear los valor random predeterminados dependiendo del nivel:
 
 ```python
-def dfs(ans, n):
-    N = n ** 2
-    if not validar(ans, n):
-        return False
-    if len(ans) == N*N:
-        return ans
-    shift = randint(0, N - 1)
-    for i in range(N):
-        val = shift + i
-        val %= N
-        val += 1
-        newans = ans[:]
-        newans.append(val)
-        newans = dfs(newans, n)
-        if newans:
-            return newans
-    return False
 
 def generate(matrix, n):
     N = n ** 2
