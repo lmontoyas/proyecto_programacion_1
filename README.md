@@ -11,12 +11,13 @@
 # Módulos
 ## Generador
 
-En el módulo `generador.py` se encuentran las funciones que generan el tablero inicial de sudoku.
+En el módulo `generador.py` se encuentran las funciones que generan el tablero inicial de sudoku. La idea principal de este módulo es generar un tablero de sudoku completo y luego retirar elementos para que pueda ser resuelto por el usuario. La estrategía es ir insertando valores fila por fila hasta obtener un tablero válido.
 
 ### DFS
 
-Depth Breadth Search (Búsqueda por profundidad), usualmente es un algoritmo usado para operar sobre estructuras de datos que presentan características de Grafo.
+Depth Breadth Search (Búsqueda por profundidad), usualmente es un algoritmo usado para operar sobre estructuras de datos que presentan características de Grafo. Cómo mencionamos anteriormente, vamos a resolver el problema fila por fila. Definimos como `nodo` a un tablero lleno con una cantidad `k` de casilleros y que es válido según las reglas de sudoku. 
 
+![Alt text](images/nodo.jpg?raw=true "Title")
 
 ```python
 def dfs(ans, n):
@@ -37,6 +38,7 @@ def dfs(ans, n):
             return newans
     return False
 ```
+La idea es continuar explorando los posibles nodos que podrían generarse a partir de este. 
 
 ### Matriz de N x N
 
