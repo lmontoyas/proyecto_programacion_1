@@ -3,9 +3,12 @@ from display import mostrar
 from jugada import operar
 from jugada import is_over
 
+def clear():
+    print("\x1b[2J\x1b[H",end="")
+
 def turno(tablero, n, mensaje):
 
-    print("\x1b[2J\x1b[H",end="")
+    clear()
 
     mostrar(tablero, n)
     print()
@@ -26,4 +29,18 @@ def nivel(nivel):
     while not is_over(tablero):
         msj = turno(tablero, n, msj)
 
-nivel("ez")
+def pantalla():
+
+    clear()
+
+    #print(imagen)
+    print('Seleccionar dificultad:')
+    print("1. Fácil: Tablero 4x4")
+    print("2. Dificil: Tablero 9x9")
+    n = 0
+    while not n in ['1','2']:
+        n = input("Nivel(1/2): ")
+    n = int(n) + 1
+    nivel(n)
+
+pantalla()
