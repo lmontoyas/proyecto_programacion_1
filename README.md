@@ -1,13 +1,16 @@
-# Sudoku: Proyecto de laboratorio de Programación I
+## Sudoku | Programación I Lab 303 UTEC 2021
+![Alt text](Screenshot%20from%202021-07-07%2009-45-12.png?raw=true "Title")
 
-![Alt text](Screenshot%20from%202021-07-06%2022-10-49.png?raw=true "Title")
-
-### Programación I Lab 303 UTEC 2021
 ## Participantes:
-Luis Golac
-Jorge Miranda
-Lyam Cáceres
-Leonardo Montoya
+Luis Golac  
+Jorge Miranda  
+Lyam Cáceres  
+Leonardo Montoya  
+
+![Alt text](Screenshot%20from%202021-07-07%2009-45-45.png?raw=true "Title")
+![Alt text](Screenshot%20from%202021-07-07%2009-45-56.png?raw=true "Title")
+![Alt text](Screenshot%20from%202021-07-07%2009-47-11.png?raw=true "Title")
+
 
 ## Estructura
 ### Modulos:
