@@ -27,7 +27,7 @@ def parse(F,C,V,N):
 
     return (F,C,V,False)
 
-def operar(F, C, V, tablero, n):
+def operar(F, C, V, tablero, n, pistas):
 
     error_jugada = "Jugada no valida"
 

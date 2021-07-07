@@ -67,6 +67,7 @@ def generate(matrix, n):
     for i in range(N):
         for j in range(N):
             matrix[i][j] = matrix[i][j] if (j,i) in pistas else 0
+    return pistas
 
 def show(matrix):
     for row in matrix:
@@ -78,8 +79,8 @@ def show(matrix):
 
 def init(n):
     emp = empty_matrix(n**2)
-    generate(emp, n)
-    return emp
+    pistas = generate(emp, n)
+    return emp, pistas
 
 def test(n):
     emp = empty_matrix(n**2)
