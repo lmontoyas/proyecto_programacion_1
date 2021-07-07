@@ -90,7 +90,7 @@ def nivel(nivel):
  \______  /\______  / .
         \/        \/ """
 
-    pantalla("", image, 1000)
+    pantalla("", image, puntaje)
 
 def pantalla(msj="", image=False, ganaste=False):
 
@@ -103,7 +103,7 @@ def pantalla(msj="", image=False, ganaste=False):
     red = Fore.RED
 
     if ganaste:
-        print(green+"Hiciste 1000 puntos. Jugar de nuevo?"+white)
+        print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
 
     error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
 
