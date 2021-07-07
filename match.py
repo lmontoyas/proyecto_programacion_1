@@ -26,4 +26,4 @@ def nivel(nivel):
     while not is_over(tablero):
         msj = turno(tablero, n, msj)
 
-nivel("dificil")
+nivel("ez")

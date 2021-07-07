@@ -60,7 +60,7 @@ def generate(matrix, n):
     #show(matrix)
     #print()
 
-    pistas_size = 17 if n == 3 else 5
+    pistas_size = 17 if n == 3 else 8
     pistas = [randint(0,N**2 - 1) for _ in range(pistas_size)]
     pistas = [cords(elem, N) for elem in pistas]
 
