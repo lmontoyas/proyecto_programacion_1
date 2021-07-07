@@ -1,10 +1,11 @@
 from generador import validar
+from colorama import Fore
 
 def parse(F,C,V,N):
 
-    error_casilla= "Ingresar casilla válida"
-    error_numero = "Numero fuera de rango"
-    error_valor = "Valor no es numerico"
+    error_casilla= Fore.LIGHTRED_EX + "Ingresar casilla válida" + Fore.WHITE
+    error_numero = Fore.LIGHTRED_EX + "Numero fuera de rango" + Fore.WHITE
+    error_valor = Fore.LIGHTRED_EX + "Valor no es numerico" + Fore.WHITE
 
     C = C.upper()
     if len(C) != 1 or ord(C) not in range(ord('A'),ord('Z') + 1):
@@ -29,7 +30,7 @@ def parse(F,C,V,N):
 
 def operar(F, C, V, tablero, n, pistas):
 
-    error_jugada = "Jugada no valida"
+    error_jugada = Fore.LIGHTRED_EX + "Jugada no valida" + Fore.WHITE
 
     N = n ** 2
 
@@ -51,7 +52,7 @@ def operar(F, C, V, tablero, n, pistas):
 
     tablero[F][C] = V
 
-    return "Siguiente Turno"
+    return Fore.GREEN + "Jugada válida ✓" + Fore.WHITE
 
 def is_over(tablero):
     for row in tablero:
