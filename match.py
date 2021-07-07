@@ -22,7 +22,7 @@ def turno(tablero, n, mensaje, pistas):
     return operar(F, C, V, tablero, n, pistas)
 
 def nivel(nivel):
-    n = 3 if nivel == "dificil" else 2
+    n = nivel
     tablero, pistas = init(n)
     msj = ""
     print(is_over(tablero))
