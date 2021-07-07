@@ -38,7 +38,7 @@ def operar(F, C, V, tablero, n, pistas):
 
     if msj: return msj
 
-    if tablero[F][C]:
+    if (C,F) in pistas:
         return error_jugada
 
     rama = []
