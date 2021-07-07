@@ -2,11 +2,11 @@
 
 ## Tabla de contenido:
 1. [Crear tablero](#crear-tablero)
-2. Display
-3. Menú
-4. Puntaje
-5. Verificador
-6. Ejecutable / Main
+2. [Display](#display)
+3. [Menu](#menu)
+4. [Puntaje](#puntaje)
+5. [Verificador](#verificador)
+6. [Ejecutable / Main](#ejecutable-/-main)
 
 ![Alt text](Screenshot%20from%202021-07-07%2009-45-12.png?raw=true "Title")
 
