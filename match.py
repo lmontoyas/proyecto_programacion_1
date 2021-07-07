@@ -7,13 +7,36 @@ from colorama import Fore
 def clear():
     print("\x1b[2J\x1b[H",end="")
 
-def turno(tablero, n, mensaje, pistas):
+def showpuntaje(ptos, puntaje):
+
+    blue = Fore.BLUE
+    white = Fore.WHITE
+    cyan = Fore.CYAN
+    red = Fore.RED
+    green = Fore.GREEN
+
+    print("Puntaje", end="")
+    if ptos:
+        print("(", end="")
+        if ptos < 0:
+            print(red, end="")
+        else:
+            print(green+"+", end="")
+        print(str(ptos), end="")
+        print(white+")", end="")
+    print(":", end="")
+    print(blue,puntaje,end="")
+    print('★'+white)
+
+def turno(tablero, n, mensaje, pistas, ptos, puntaje):
 
     clear()
 
     blue = Fore.BLUE
     white = Fore.WHITE
     cyan = Fore.CYAN
+    red = Fore.RED
+    green = Fore.GREEN
 
     textoez = """  ____ _____
  / _  |___  )
@@ -27,6 +50,9 @@ def turno(tablero, n, mensaje, pistas):
 
     if n == 2 : print(cyan+textoez+white)
     else: print(cyan+textohard+white)
+
+    print()
+    showpuntaje(ptos, puntaje)
 
     print()
 
@@ -49,9 +75,13 @@ def nivel(nivel):
 
     tablero, pistas = init(n)
     msj = ""
-    while not is_over(tablero):
-        msj = turno(tablero, n, msj, pistas)
 
+    puntaje = 0 # Puntaje inicial
+    ptos = 0
+
+    while not is_over(tablero):
+        msj, ptos = turno(tablero, n, msj, pistas, ptos, puntaje)
+        puntaje += ptos
 
     image = """  ________  ________
  /  _____/ /  _____/ .
