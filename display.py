@@ -9,7 +9,7 @@ def format(n, j, sep, esp):
         print(sep, end="")
 
 def printfila(fila, n, begin, sep, esp, i = -1, pistas=[]):
-    print(begin, end="   ")
+    print(begin, end=" ")
     N = n ** 2
     for j in range(N):
         color = Fore.WHITE

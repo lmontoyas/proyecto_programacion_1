@@ -11,19 +11,39 @@ def turno(tablero, n, mensaje, pistas):
 
     clear()
 
+    blue = Fore.BLUE
+    white = Fore.WHITE
+    cyan = Fore.CYAN
+
+    textoez = """  ____ _____
+ / _  |___  )
+( (/ / / __/
+ \____|_____)"""
+
+    textohard = """  __   _  ____    _____   _____
+ |  |_| ||    \  |     | |     \ .
+ |   _  ||     \ |     \ |      \ .
+ |__| |_||__|\__\|__|\__\|______/ ."""
+
+    if n == 2 : print(cyan+textoez+white)
+    else: print(cyan+textohard+white)
+
+    print()
+
     mostrar(tablero, n, pistas)
     print()
 
     print(mensaje)
 
-    F = input("Ingrese Fila: ")
-    C = input("Ingrese Columna: ")
-    V = input("Ingrese Valor: ")
-
+    F = input(white+"Ingrese FILA: "+blue)
+    C = input(white+"Ingrese COLUMNA: "+blue)
+    V = input(white+"Ingrese VALOR: "+blue)
+    print(white)
     return operar(F, C, V, tablero, n, pistas)
 
 def nivel(nivel):
     n = nivel
+
     tablero, pistas = init(n)
     msj = ""
     print(is_over(tablero))
@@ -56,15 +76,13 @@ def pantalla(msj=""):
     print(imagen)
     print()
     print(blue+'Seleccionar dificultad:'+white)
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     print()
-    print("Opción ("+blue+"1"+white+")"+green+" Fácil: "+white+"TABLERO 4x4")
+    print("["+blue+"1"+white+"]"+green+" Fácil: "+white+"TABLERO 4x4")
     print()
-    print("Opción ("+blue+"2"+white+")"+green+" Dificil: "+white+"TABLERO 9x9")
+    print("["+blue+"2"+white+"]"+green+" Dificil: "+white+"TABLERO 9x9")
     print()
-    print("Opción ("+blue+"3"+white+")"+blue+" SALIR"+white)
+    print("["+blue+"3"+white+"]"+blue+" SALIR"+white)
     print()
-    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     n = 0
     print(msj)
     n = input("Elija opción: ")
