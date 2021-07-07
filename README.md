@@ -13,7 +13,7 @@
 #### Crear tablero
 
 Crear el tablero dependiendo del nivel:
-
+```python
     def empty_matrix(N):
         return [[0]*N for _ in range(N)]
 
@@ -43,6 +43,7 @@ Crear el tablero dependiendo del nivel:
             C[c].append(v)
 
     return True
+```
 
 Crear los valor random predeterminados dependiendo del nivel:
 
