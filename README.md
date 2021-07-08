@@ -36,6 +36,8 @@ def dfs(ans, n):
 # n = 3 para dificil
 
     N = n ** 2
+
+# El tablero sería de N x N
   
 # Validamos que 'ans' siga las reglas de sudoku
     
@@ -44,10 +46,19 @@ def dfs(ans, n):
         
 # Luego escribimos el caso base.
 # El caso base es cuando completamos el tablero.
-# Esto se verifica cuando el tamaño de ans es N*N
+# Esto se verifica cuando el tamaño de 'ans' es N x N
 
     if len(ans) == N*N:
         return ans
+ 
+# Luego buscamos el siguiente elemento a llenar el tablero.
+# El siguiente elemento debe ser de 1 a 9.
+# Pero para evitar que el mismo tablero se genere cada vez,
+# definimos una variable 'shift' de forma aleatorea
+# Por ejemplo si shift = 4,
+# entonces el orden de los elementos a probar será, para N = 9
+# 4,5,6,7,8,9,1,2,3 en lugar de 1,2,3,4,5,6,7,8,9
+ 
     shift = randint(0, N - 1)
     for i in range(N):
         val = shift + i
@@ -55,9 +66,19 @@ def dfs(ans, n):
         val += 1
         newans = ans[:]
         newans.append(val)
+        
+        # llamada recursiva con el siguiente nodo
         newans = dfs(newans, n)
+        
+        # si existe una respuesta, se retorna
         if newans:
             return newans
+    
+# Si se visitó todos los nodos vecinos a este,
+# y no se encontró solución por este camino,
+# se retorna False, para indicar al nodo padre
+# que busque una solución con los otros nodos
+    
     return False
 ```
 
