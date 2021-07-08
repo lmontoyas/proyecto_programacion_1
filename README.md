@@ -202,7 +202,7 @@ def init(n):
     return emp, pistas
 ```
 
-### Display
+## Display
 
 ![Alt text](images/hardmode.png?raw=true "Title")
 
@@ -242,7 +242,7 @@ def mostrar(matrix, n, pistas):
             printfila('-'*N,n, " ", "+", '-')
 ```
 
-### Sudoku
+## Sudoku
 
 El módulo `sudoku.py`, es la función principal y tiene funciones que le permiten al jugador interactuar con el juego.
 
@@ -317,7 +317,7 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje):
     return operar(F, C, V, tablero, n, pistas)
 ```
 
-#### Menu principal
+### Menu principal
 
 ![Alt text](images/main.png?raw=true "Title")
 
@@ -353,7 +353,7 @@ pantalla()
 ![Alt text](images/hardmode.png?raw=true "Title")
 ![Alt text](images/ezmode.png?raw=true "Title")
 
-#### Partida
+### Partida
 
 ```python
 def nivel(nivel):
@@ -406,7 +406,7 @@ def pantalla(msj="", image=False, ganaste=False):
 ```
 
 
-### Jugada
+## Jugada
 
 El módulo `jugada.py` verifica que una jugada sea válida y le asigna un puntaje dependiendo.
 
