@@ -2,7 +2,9 @@ from generador import init
 from display import mostrar
 from jugada import operar
 from jugada import is_over
+
 from colorama import Fore
+import timeit
 
 def clear():
     print("\x1b[2J\x1b[H",end="")
@@ -28,7 +30,7 @@ def showpuntaje(ptos, puntaje):
     print(blue,puntaje,end="")
     print('★'+white)
 
-def turno(tablero, n, mensaje, pistas, ptos, puntaje):
+def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     clear()
 
@@ -59,13 +61,28 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje):
     mostrar(tablero, n, pistas)
     print()
 
-    print(mensaje)
+    print(mensaje, end=" ")
+    if tiempo > 0:
+        print("("+str(tiempo)+"s)")
+    else:
+        print()
+
+    start = timeit.default_timer()
 
     F = input(white+"Ingrese FILA: "+blue)
     C = input(white+"Ingrese COLUMNA: "+blue)
     V = input(white+"Ingrese VALOR: "+blue)
     print(white)
-    return operar(F, C, V, tablero, n, pistas)
+
+    stop = timeit.default_timer()
+
+    msj, ptos = operar(F, C, V, tablero, n, pistas)
+
+    # penalidad por segundo
+    PT = 10
+    tiempo = round(stop - start, 1)
+
+    return msj, ptos - int(tiempo)*PT, tiempo
 
 def nivel(nivel):
     n = nivel
@@ -78,9 +95,10 @@ def nivel(nivel):
 
     puntaje = 0 # Puntaje inicial
     ptos = 0
+    tiempo = -1
 
     while not is_over(tablero):
-        msj, ptos = turno(tablero, n, msj, pistas, ptos, puntaje)
+        msj, ptos,tiempo = turno(tablero, n, msj, pistas, ptos, puntaje, tiempo)
         puntaje += ptos
 
     image = """  ________  ________
