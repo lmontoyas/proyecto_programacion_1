@@ -26,10 +26,26 @@ La idea es continuar explorando los posibles nodos que podrían generarse a part
 Dónde `A` es un número de 1 a 9 inclusive. Entonces tenemos 9 tableros que pueden generarse a partir del anterior. Hacemos llamada recursiva a la función con uno de estos nodos y de no encontrar una solución final válida con este, continuamos con el siguiente nodo generado.
 
 ```python
+
+# El parámetro 'ans' es la respuesta acumulada con k valores.
+# como se explicó arriba, hacemos llamada recursiva a las respuestas de k + 1
+
 def dfs(ans, n):
+
+# n = 2 para fácil
+# n = 3 para dificil
+
     N = n ** 2
+  
+# Validamos que 'ans' siga las reglas de sudoku
+    
     if not validar(ans, n):
         return False
+        
+# Luego escribimos el caso base.
+# El caso base es cuando completamos el tablero.
+# Esto se verifica cuando el tamaño de ans es N*N
+
     if len(ans) == N*N:
         return ans
     shift = randint(0, N - 1)
