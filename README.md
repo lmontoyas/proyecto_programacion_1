@@ -248,7 +248,8 @@ def mostrar(matrix, n, pistas):
 
 ## Sudoku
 
-El módulo `sudoku.py`, es la función principal y tiene funciones que le permiten al jugador interactuar con el juego.
+El módulo `sudoku.py`, es la función principal y tiene funciones que le permiten al jugador interactuar con el juego. Otra cosa que incluimos son los mensajes,
+que son variables que retornan algunas funciones que verifica y validan entradas o informan al jugador sobre acciones válidas o no.
 
 ```python
 from generador import init
@@ -416,6 +417,11 @@ def nivel(nivel):
  \______  /\______  / .
         \/        \/ """
 
+    # Al acabar la partida se vuelve a llamar
+    # el menú principal, pero cambiando la imagen
+    # y agregando un mensaje sobre la puntuación
+    # obtenida
+
     pantalla("", image, puntaje)
 
 ```
@@ -427,7 +433,7 @@ def nivel(nivel):
 
 ## Jugada
 
-El módulo `jugada.py` verifica que una jugada sea válida y le asigna un puntaje dependiendo.
+El módulo `jugada.py` verifica que una jugada sea válida y le asigna un puntaje dependiendo. La función `parse` verifica la validez de los valores ingresados por el jugador.
 
 ```python
 from generador import validar
@@ -460,6 +466,12 @@ def parse(F,C,V,N):
 
     return (F,C,V,False)
 
+```
+
+En la función operar definimos el puntaje por jugada, por cada movimiento inválido se penaliza y las jugadas válidas se bonifica con un valor proporcional al número ingresado, por lo que si el tablero está en modo dificil hay probabilidad de ganar más puntos.
+
+```python
+
 def operar(F, C, V, tablero, n, pistas):
 
     # El puntaje es proporcional al valor ingresado
@@ -475,8 +487,11 @@ def operar(F, C, V, tablero, n, pistas):
 
     F,C,V,msj = parse(F,C,V,N)
 
+    # si hay un error de validación se retorna
     if msj: return msj, Pe
 
+    # Verifica si el usuario intenta sobreescribir
+    # una de las casillas pre-establecidas
     if (C,F) in pistas:
         return error_jugada, Pe
 
