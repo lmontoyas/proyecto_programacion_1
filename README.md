@@ -2,13 +2,17 @@
 
 # Sudoku | Programación I Lab 303 UTEC 2021
 
+Para jugar el juego ejecute el archivo `sudoku.py`
+```
+$> python sudoku.py
+```
+
 ## Tabla de contenido:
 1. [Generador](#generador)
 2. [Display](#display)
-3. [Menu](#menu)
-4. [Puntaje](#puntaje)
-5. [Verificador](#verificador)
-6. [Main](#main)
+3. [Sudoku](#sudoku)
+4. [Jugada](#jugada)
+5. [Autores](#autores)
 
 # Módulos
 ## Generador
