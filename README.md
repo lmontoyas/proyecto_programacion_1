@@ -81,7 +81,70 @@ def dfs(ans, n):
     
     return False
 ```
+### Validar
 
+Notar que la representación del tablero en la variable `ans` es una lista de una dimensión. Si el `i-esimo` elemento de `ans` representa un elemento en la matriz, para obtener en que columna y fila se encuentra escribimos la siguiente función:
+
+```python
+
+# 'val' es el índice que tiene el elemento en 'ans'.
+# ans llena la matriz por filas, entonces:
+# la columna estaría dada por val % N
+# y su fila por val // N
+
+def cords(val, N):
+    return (val%N, val//N)
+```
+También podemos obtener en que grilla de `n x n` se encuentra operando `c = x//n + y - y%n`.
+
+```python
+def validar(ans, n):
+    N = n ** 2
+    
+    # Para validar a 'ans', creamos subconjuntos que
+    # verifiquen que los elementos no se repitan.
+    
+    # I es el conjunto de filas
+    # I[x] es la x-esima fila
+    I = [[] for _ in range(N)]
+    
+    # J es el conjunto de Columnas
+    J = [[] for _ in range(N)]
+    
+    # C es el conjunto de grillas
+    C = [[] for _ in range(N)]
+    
+    # En realidad, el orden de I, J y C no importa,
+    # mientras se verifique que no se repitan los elementos.
+
+    for i in range(len(ans)):
+    
+        # se calcula x,y,c
+        
+        x,y = cords(i, N)
+        c = x//n + y - y%n
+        v = ans[i]
+        
+        # se verifica que v no esté vacía
+        if not v:
+            continue
+        
+        # se verifica que no se repita
+            
+        if v in I[x]:
+            return False
+        if v in J[y]:
+            return False
+        if v in C[c]:
+            return False
+        I[x].append(v)
+        J[y].append(v)
+        C[c].append(v)
+
+    # De no haber repetidos se retorna True
+
+    return True
+```
 
 ### Matriz de N x N
 
@@ -96,36 +159,9 @@ def empty_matrix(N):
 
 El tablero generado debe cumplirar con las reglas de sudoku y tener por lo menos una solución posible.
 
-```python
-def validar(ans, n):
-    N = n ** 2
-    I = [[] for _ in range(N)]
-    J = [[] for _ in range(N)]
-    C = [[] for _ in range(N)]
 
-    for i in range(len(ans)):
-        x,y = cords(i, N)
-        c = x//n + y - y%n
-        v = ans[i]
-        if not v:
-            continue
-        if v in I[x]:
-            return False
-        if v in J[y]:
-            return False
-        if v in C[c]:
-            return False
-        I[x].append(v)
-        J[y].append(v)
-        C[c].append(v)
 
-    return True
-```
 
-```python
-def cords(val, N):
-    return (val%N, val//N)
-```
 
 Crear los valor random predeterminados dependiendo del nivel:
 
