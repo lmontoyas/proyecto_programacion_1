@@ -146,38 +146,36 @@ def validar(ans, n):
     return True
 ```
 
-### Matriz de N x N
+### Generate
 
-Empieza con la función `empty_matrix`, esta función retorna una matriz de `NxN`
+Para crear una matriz vacía simplemente escribimos la siguiente función:
 
 ```python
 def empty_matrix(N):
     return [[0]*N for _ in range(N)]
 ```
-
-### Validar
-
-El tablero generado debe cumplirar con las reglas de sudoku y tener por lo menos una solución posible.
-
-
-
-
-
-Crear los valor random predeterminados dependiendo del nivel:
+Para generar la respuesta usamos las funciones anteriormente definidas:
 
 ```python
 
+# 'matrix' es la matriz vacía
 def generate(matrix, n):
+    
     N = n ** 2
+    
+    # Buscamos una solución,
+    # inicialmente 'ans' es una lista vacía
     vals = dfs([], n)
+
+    # Transformamos a 'ans' en una matrix de N*N
 
     for i in range(N*N):
         val = vals[i]
         x, y = cords(i, N)
         matrix[y][x] = val
 
-    #show(matrix)
-    #print()
+    # Dejamos una cantidad de pistas
+    # y borramos los demás casilleros
 
     pistas_size = 17 if n == 3 else 8
     pistas = [randint(0,N**2 - 1) for _ in range(pistas_size)]
@@ -186,13 +184,15 @@ def generate(matrix, n):
     for i in range(N):
         for j in range(N):
             matrix[i][j] = matrix[i][j] if (j,i) in pistas else 0
+
+    # se modifica la matriz
+    # Y también retornamos las pistas para usarlas luego
     return pistas
 
-def show(matrix):
-    for row in matrix:
-        for col in row:
-            print(col if col else ' ', end="")
-        print()
+# init es la función principal de este módulo,
+# retorna matriz inicial y una lista de pistas.
+# La lista de pistas se retorna para diferenciarlas
+# de las casillas ingresadas por el usuario posteriormente.
 
 def init(n):
     emp = empty_matrix(n**2)
