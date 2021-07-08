@@ -1,3 +1,5 @@
+![Alt text](images/main.png?raw=true "Title")
+
 # Sudoku | Programación I Lab 303 UTEC 2021
 
 ## Tabla de contenido:
@@ -200,11 +202,11 @@ def init(n):
     return emp, pistas
 ```
 
-![Alt text](images/main.png?raw=true "Title")
+### Display
 
-#### Display
-Mostrar menu /
-Mostrar el tablero /
+![Alt text](images/hardmode.png?raw=true "Title")
+
+El módulo `display.py` contiene funciones para imprimir el tablero como se muestra en la imagen.
 
 ```python
 from colorama import Fore, Back, Style
@@ -240,10 +242,9 @@ def mostrar(matrix, n, pistas):
             printfila('-'*N,n, " ", "+", '-')
 ```
 
-#### Menu
+### Sudoku
 
-Ingresar posiciones /
-Ingresar numero
+El módulo `sudoku.py`, es la función principal y tiene funciones que le permiten al jugador interactuar con el juego.
 
 ```python
 from generador import init
@@ -316,51 +317,9 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje):
     return operar(F, C, V, tablero, n, pistas)
 ```
 
-### Mostrar puntajes:
+#### Menu principal
 
-```python
-def nivel(nivel):
-    n = nivel
-
-    green = Fore.GREEN
-    white = Fore.WHITE
-
-    tablero, pistas = init(n)
-    msj = ""
-
-    puntaje = 0 # Puntaje inicial
-    ptos = 0
-
-    while not is_over(tablero):
-        msj, ptos = turno(tablero, n, msj, pistas, ptos, puntaje)
-        puntaje += ptos
-
-    image = """  ________  ________
- /  _____/ /  _____/ .
-/   \  ___/   \  ___
-\    \_\  \    \_\  \ .
- \______  /\______  / .
-        \/        \/ """
-
-    pantalla("", image, puntaje)
-
-def pantalla(msj="", image=False, ganaste=False):
-
-
-    clear()
-
-    blue = Fore.BLUE
-    green = Fore.GREEN
-    white = Fore.WHITE
-    red = Fore.RED
-
-    if ganaste:
-        print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
-
-    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
-```
-
-### Controlador del menu:
+![Alt text](images/main.png?raw=true "Title")
 
 ```python
     imagen=image or """                 .___      __
@@ -391,18 +350,65 @@ def pantalla(msj="", image=False, ganaste=False):
 
 pantalla()
 ```
-
 ![Alt text](images/hardmode.png?raw=true "Title")
 ![Alt text](images/ezmode.png?raw=true "Title")
 
-#### Puntaje
-Tiempo /
-Controlador del puntaje
-#### Verificador
-Controla las celdas /
-Controla las filas /
-Controla columnas
-#### Main
+#### Partida
+
+```python
+def nivel(nivel):
+    n = nivel
+
+    green = Fore.GREEN
+    white = Fore.WHITE
+
+    tablero, pistas = init(n)
+    msj = ""
+
+    puntaje = 0 # Puntaje inicial
+    ptos = 0
+
+    while not is_over(tablero):
+        msj, ptos = turno(tablero, n, msj, pistas, ptos, puntaje)
+        puntaje += ptos
+
+    # Al acabar el juego se regresa al menú principal,
+    # Pero mostrando nuevos mensajes:
+
+    image = """  ________  ________
+ /  _____/ /  _____/ .
+/   \  ___/   \  ___
+\    \_\  \    \_\  \ .
+ \______  /\______  / .
+        \/        \/ """
+
+    pantalla("", image, puntaje)
+
+```
+
+![Alt text](images/endgame.png?raw=true "Title")
+
+```python
+def pantalla(msj="", image=False, ganaste=False):
+
+
+    clear()
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    white = Fore.WHITE
+    red = Fore.RED
+
+    if ganaste:
+        print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
+
+    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
+```
+
+
+### Jugada
+
+El módulo `jugada.py` verifica que una jugada sea válida y le asigna un puntaje dependiendo.
 
 ```python
 from generador import validar
@@ -482,9 +488,8 @@ def is_over(tablero):
     return True
 ```
 
-![Alt text](images/endgame.png?raw=true "Title")
+## Autores:
 
-## Participantes:
 Luis Golac  
 Jorge Miranda  
 Lyam Cáceres  
