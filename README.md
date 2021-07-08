@@ -281,7 +281,7 @@ def showpuntaje(ptos, puntaje):
     print(blue,puntaje,end="")
     print('★'+white)
 
-def turno(tablero, n, mensaje, pistas, ptos, puntaje):
+def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     clear()
 
@@ -312,13 +312,30 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje):
     mostrar(tablero, n, pistas)
     print()
 
-    print(mensaje)
+    print(mensaje, end=" ")
+    if tiempo > 0:
+        print("("+str(tiempo)+"s)")
+    else:
+        print()
+
+    start = timeit.default_timer()
 
     F = input(white+"Ingrese FILA: "+blue)
     C = input(white+"Ingrese COLUMNA: "+blue)
     V = input(white+"Ingrese VALOR: "+blue)
     print(white)
-    return operar(F, C, V, tablero, n, pistas)
+
+    stop = timeit.default_timer()
+
+    msj, ptos = operar(F, C, V, tablero, n, pistas)
+
+    # penalidad por segundo
+    PT = 10
+    tiempo = round(stop - start, 1)
+
+    return msj, ptos - int(tiempo)*PT, tiempo
+
+
 ```
 
 ### Menu principal
@@ -326,6 +343,21 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje):
 ![Alt text](images/main.png?raw=true "Title")
 
 ```python
+def pantalla(msj="", image=False, ganaste=False):
+
+
+    clear()
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    white = Fore.WHITE
+    red = Fore.RED
+
+    if ganaste:
+        print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
+
+    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
+
     imagen=image or """                 .___      __
   ________ __  __| _/____ |  | ____ __
  /  ___/  |  \/ __ |/  _ \|  |/ /  |  \ .
@@ -371,13 +403,11 @@ def nivel(nivel):
 
     puntaje = 0 # Puntaje inicial
     ptos = 0
+    tiempo = -1
 
     while not is_over(tablero):
-        msj, ptos = turno(tablero, n, msj, pistas, ptos, puntaje)
+        msj, ptos,tiempo = turno(tablero, n, msj, pistas, ptos, puntaje, tiempo)
         puntaje += ptos
-
-    # Al acabar el juego se regresa al menú principal,
-    # Pero mostrando nuevos mensajes:
 
     image = """  ________  ________
  /  _____/ /  _____/ .
@@ -392,22 +422,7 @@ def nivel(nivel):
 
 ![Alt text](images/endgame.png?raw=true "Title")
 
-```python
-def pantalla(msj="", image=False, ganaste=False):
 
-
-    clear()
-
-    blue = Fore.BLUE
-    green = Fore.GREEN
-    white = Fore.WHITE
-    red = Fore.RED
-
-    if ganaste:
-        print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
-
-    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
-```
 
 
 ## Jugada
