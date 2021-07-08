@@ -15,9 +15,15 @@ En el módulo `generador.py` se encuentran las funciones que generan el tablero 
 
 ### DFS
 
-Depth Breadth Search (Búsqueda por profundidad), usualmente es un algoritmo usado para operar sobre estructuras de datos que presentan características de Grafo. Cómo mencionamos anteriormente, vamos a resolver el problema fila por fila. Definimos como `nodo` a un tablero lleno con una cantidad `k` de casilleros y que es válido según las reglas de sudoku. 
+Depth Breadth Search (Búsqueda por profundidad), usualmente es un algoritmo recursivo usado para operar sobre estructuras de datos que presentan características de Grafo. Cómo mencionamos anteriormente, vamos a resolver el problema fila por fila. Definimos como `nodo` a un tablero lleno con una cantidad `k` de casilleros y que es válido según las reglas de sudoku. 
 
 ![Alt text](images/nodo.jpg?raw=true "Title")
+
+La idea es continuar explorando los posibles nodos que podrían generarse a partir de este. Por ejemplo el siguiente tablero es generado a partir del nodo anterior.
+
+![Alt text](images/vecino.jpg?raw=true "Title")
+
+Dónde `A` es un número de 1 a 9 inclusive. Entonces tenemos 9 tableros que pueden generarse a partir del anterior. Hacemos llamada recursiva a la función con uno de estos nodos y de no encontrar una solución final válida con este, continuamos con el siguiente nodo generado.
 
 ```python
 def dfs(ans, n):
@@ -38,7 +44,7 @@ def dfs(ans, n):
             return newans
     return False
 ```
-La idea es continuar explorando los posibles nodos que podrían generarse a partir de este. 
+
 
 ### Matriz de N x N
 
