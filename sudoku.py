@@ -110,8 +110,63 @@ def nivel(nivel):
 
     pantalla("", image, puntaje)
 
-def pantalla(msj="", image=False, ganaste=False):
+def nuevapartida(msj=""):
 
+    clear()
+
+    image = ''' _ __   _____      __
+| '_ \ / _ \ \ /\ / /
+| | | |  __/\ V  V /
+|_| |_|\___| \_/\_/
+                 _       _
+ _ __ ___   __ _| |_ ___| |__
+| '_ ` _ \ / _` | __/ __| '_ \.
+| | | | | | (_| | || (__| | | |
+|_| |_| |_|\__,_|\__\___|_| |_|'''
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    white = Fore.WHITE
+    red = Fore.RED
+    cyan = Fore.CYAN
+
+    error_opcion = red + "Opción inválida, debe escribir 1,2 o 3" + white
+
+    print(blue)
+    print(image)
+    print(blue)
+    print()
+    print(blue+'Seleccionar dificultad:'+white)
+    print()
+    print("["+blue+"1"+white+"]"+green+" Fácil: "+white+"TABLERO 4x4")
+    print()
+    print("["+blue+"2"+white+"]"+green+" Dificil: "+white+"TABLERO 9x9")
+    print()
+    print("["+blue+"3"+white+"]"+blue+" Regresar"+white)
+    print()
+    print(msj)
+    n = input("Elija opción: ")
+
+    if not n in ['1','2','3']:
+        nuevapartida(error_opcion)
+
+    n = int(n)
+
+    if n == 3:
+        pantalla()
+
+    print(blue+'\tSeleccionar nivel:'+white)
+    print()
+    print("\t["+blue+"1"+white+"]"+green+" Fácil: "+white+"TABLERO 4x4")
+    print()
+    print("\t["+blue+"2"+white+"]"+green+" Dificil: "+white+"TABLERO 9x9")
+    print()
+    print("\t["+blue+"3"+white+"]"+blue+" Regresar"+white)
+
+    n = input("Elija opción: ")
+
+
+def pantalla(msj="", image=False, ganaste=False):
 
     clear()
 
@@ -119,6 +174,7 @@ def pantalla(msj="", image=False, ganaste=False):
     green = Fore.GREEN
     white = Fore.WHITE
     red = Fore.RED
+    cyan = Fore.CYAN
 
     if ganaste:
         print(green+"¡Hiciste "+ str(ganaste) +" puntos!. ¿Jugar de nuevo?"+white)
@@ -134,21 +190,24 @@ def pantalla(msj="", image=False, ganaste=False):
 
     print(imagen)
     print()
-    print(blue+'Seleccionar dificultad:'+white)
+
+    print(blue+'Seleccionar opción:'+white)
     print()
-    print("["+blue+"1"+white+"]"+green+" Fácil: "+white+"TABLERO 4x4")
+    print("["+green+"1"+white+"]"+green+" NUEVA PARTIDA"+white)
     print()
-    print("["+blue+"2"+white+"]"+green+" Dificil: "+white+"TABLERO 9x9")
+    print("["+green+"2"+white+"]"+green+" CONTINUAR PARTIDA"+white)
     print()
-    print("["+blue+"3"+white+"]"+blue+" SALIR"+white)
+    print("["+blue+"3"+white+"]"+blue+" TABLA DE POSICIONES"+white)
     print()
+    print("["+blue+"4"+white+"]"+blue+" SALIR"+white)
+    print()
+
     n = 0
     print(msj)
     n = input("Elija opción: ")
-    if not n in ['1','2','3']:
+    if not n in ['1','2','3','4']:
         pantalla(error_opcion, image, ganaste)
-    n = int(n) + 1
-    if n != 4:
-        nivel(n)
+    if n == '1':
+        nuevapartida()
 
 pantalla()
