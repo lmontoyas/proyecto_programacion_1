@@ -2,6 +2,7 @@ from generador import init
 from display import mostrar
 from jugada import operar
 from jugada import is_over
+import json
 
 from colorama import Fore
 import timeit
@@ -90,6 +91,10 @@ def nivel(nivel, dificultad):
     green = Fore.GREEN
     white = Fore.WHITE
 
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    # valores iniciales
     tablero, pistas = init(n, dificultad)
     msj = ""
 
@@ -97,9 +102,36 @@ def nivel(nivel, dificultad):
     ptos = 0
     tiempo = -1
 
+    game_state = {
+        'tablero': tablero,
+        'puntaje': puntaje,
+        'nivel': n,
+        'dificultad': dificultad,
+        'terminada': False
+    }
+
+    memory[10*n + dificultad] = game_state
+
+    with open('memory.json', 'w') as fp:
+        json.dump(memory, fp)
+
+    #############
+
     while not is_over(tablero):
         msj, ptos,tiempo = turno(tablero, n, msj, pistas, ptos, puntaje, tiempo)
         puntaje += ptos
+
+        game_state['tablero'] = tablero
+        game_state['puntaje'] = puntaje
+
+        with open('memory.json', 'w') as fp:
+            json.dump(memory, fp)
+
+    game_state["terminada"] = True
+
+    with open('memory.json', 'w') as fp:
+        json.dump(memory, fp)
+
 
     image = """  ________  ________
  /  _____/ /  _____/ .
