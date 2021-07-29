@@ -84,13 +84,13 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     return msj, ptos - int(tiempo)*PT, tiempo
 
-def nivel(nivel):
+def nivel(nivel, dificultad):
     n = nivel
 
     green = Fore.GREEN
     white = Fore.WHITE
 
-    tablero, pistas = init(n)
+    tablero, pistas = init(n, dificultad)
     msj = ""
 
     puntaje = 0 # Puntaje inicial
@@ -155,15 +155,38 @@ def nuevapartida(msj=""):
     if n == 3:
         pantalla()
 
-    print(blue+'\tSeleccionar nivel:'+white)
-    print()
-    print("\t["+blue+"1"+white+"]"+green+" Fácil: "+white+"TABLERO 4x4")
-    print()
-    print("\t["+blue+"2"+white+"]"+green+" Dificil: "+white+"TABLERO 9x9")
-    print()
-    print("\t["+blue+"3"+white+"]"+blue+" Regresar"+white)
+    msj = " "
 
-    n = input("Elija opción: ")
+    while msj:
+        clear()
+        print(blue)
+        print(image)
+        print()
+
+        print(blue+'\tSeleccionar nivel:'+white)
+        print()
+        print("["+blue+"1"+white+"]"+green+" Principiante: "+white+"")
+        print()
+        print("["+blue+"2"+white+"]"+green+" Intermedio: "+white+"")
+        print()
+        print("["+blue+"3"+white+"]"+green+" Avanzado: "+white+"")
+        print()
+        print("["+blue+"4"+white+"]"+blue+" Regresar"+white)
+
+        print()
+        print(msj)
+        m = input("Elija opción: ")
+
+        if not m in ['1', '2', '3', '4']:
+            msj = error_opcion
+            continue
+
+        m = int(m)
+
+        if m == 4:
+            nuevapartida()
+
+        nivel(n + 1, m)
 
 
 def pantalla(msj="", image=False, ganaste=False):

@@ -1,4 +1,5 @@
 from random import randint
+from random import shuffle
 
 def empty_matrix(N):
     return [[0]*N for _ in range(N)]
@@ -48,7 +49,7 @@ def dfs(ans, n):
             return newans
     return False
 
-def generate(matrix, n):
+def generate(matrix, n, m):
     N = n ** 2
     vals = dfs([], n)
 
@@ -60,9 +61,20 @@ def generate(matrix, n):
     #show(matrix)
     #print()
 
-    pistas_size = 17 if n == 3 else 8
-    pistas = [randint(0,N**2 - 1) for _ in range(pistas_size)]
-    pistas = [cords(elem, N) for elem in pistas]
+    pistas = {
+        (2, 1): 8,
+        (2, 2): 6,
+        (2, 3): 4,
+
+        (3, 1): 40,
+        (3, 2): 30,
+        (3, 3): 17
+    }
+
+    pistas_size = pistas[(n, m)]
+    pistas = list(range(N**2))
+    shuffle(pistas)
+    pistas = [cords(elem, N) for elem in pistas[:pistas_size]]
 
     for i in range(N):
         for j in range(N):
@@ -77,9 +89,9 @@ def show(matrix):
 
 #### test
 
-def init(n):
+def init(n, m):
     emp = empty_matrix(n**2)
-    pistas = generate(emp, n)
+    pistas = generate(emp, n, m)
     return emp, pistas
 
 def test(n):
