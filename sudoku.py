@@ -126,6 +126,7 @@ def nuevapartida(msj=""):
 
     blue = Fore.BLUE
     green = Fore.GREEN
+    yellow = Fore.YELLOW
     white = Fore.WHITE
     red = Fore.RED
     cyan = Fore.CYAN
@@ -159,19 +160,37 @@ def nuevapartida(msj=""):
 
     while msj:
         clear()
-        print(blue)
-        print(image)
+        print(yellow)
+
+
+        image_nivel = ''' ________          ________
+/   __   \___  ___/   __   \.
+\____    /\  \/  /\____    /
+   /    /  >    <    /    /
+  /____/  /__/\_ \  /____/
+                \/          '''
+
+        if n == 1:
+            image_nivel = '''   _____           _____
+  /  |  |___  ___ /  |  |
+ /   |  |\  \/  //   |  |_
+/    ^   />    </    ^   /
+\____   |/__/\_ \____   |
+     |__|      \/    |__| '''
+
+
+        print(image_nivel)
         print()
 
-        print(blue+'\tSeleccionar nivel:'+white)
+        print(blue+'Seleccionar nivel:'+white)
         print()
-        print("["+blue+"1"+white+"]"+green+" Principiante: "+white+"")
+        print("["+blue+"1"+white+"]"+white+" Principiante "+white+"")
         print()
-        print("["+blue+"2"+white+"]"+green+" Intermedio: "+white+"")
+        print("["+blue+"2"+white+"]"+green+" Intermedio "+white+"")
         print()
-        print("["+blue+"3"+white+"]"+green+" Avanzado: "+white+"")
+        print("["+blue+"3"+white+"]"+yellow+" Avanzado "+white+"")
         print()
-        print("["+blue+"4"+white+"]"+blue+" Regresar"+white)
+        print("["+blue+"4"+white+"]"+blue+" REGRESAR"+white)
 
         print()
         print(msj)
