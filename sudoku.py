@@ -333,12 +333,16 @@ def cargar(msj=""):
                + Back.YELLOW + " " + dificultad + " ")
         print(Style.RESET_ALL)
 
+    print("["+str(len(memorias) + 1)+"] SALIR")
     print(msj)
 
     key = input("Elegir opción: ")
-    if key not in list([str(i) for i in range(1, len(memorias) + 1)]):
+    if key not in list([str(i) for i in range(1, len(memorias) + 2)]):
         cargar(error_opcion)
-    key = memorias[int(key) - 1]
+    key = int(key) - 1
+    if key == len(memorias):
+        pantalla()
+    key = memorias[key]
     n = memory[key]["nivel"]
     dif = memory[key]["dificultad"]
     nivel(n, dif, key)
