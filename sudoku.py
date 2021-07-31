@@ -3,6 +3,7 @@ from display import mostrar
 from jugada import operar
 from jugada import is_over
 import json
+import sys
 
 from colorama import Fore, Back, Style
 import timeit
@@ -82,10 +83,28 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     N = n ** 2
 
+    salir = "salir/quit/exit"
+
+    print("Para salir escriba: "+salir)
+    salir = salir.split("/")
+
     F = input(white+"Ingrese FILA (1-"+str(N)+"): "+blue)
+
+    if F.lower() in salir:
+        sys.exit()
+
     C = input(white+"Ingrese COLUMNA (A-"+chr(ord('A') + N - 1)+"): "+blue)
-    V = input(white+"Ingrese VALOR: "+blue)
+
+    if C.lower() in salir:
+        sys.exit()
+
+    V = input(white+"Ingrese VALOR (1-"+str(N)+"): "+blue)
+
+    if V.lower() in salir:
+        sys.exit()
+
     print(white)
+
 
     stop = timeit.default_timer()
 
@@ -134,6 +153,7 @@ def nivel(nivel, dificultad):
 
     while not is_over(tablero):
         msj, ptos,tiempo = turno(tablero, n, msj, pistas, ptos, puntaje, tiempo)
+
         puntaje += ptos
 
         game_state['tablero'] = tablero
