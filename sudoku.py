@@ -116,7 +116,7 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     return msj, ptos - int(tiempo)*PT, tiempo
 
-def nivel(nivel, dificultad):
+def nivel(nivel, dificultad, key = False):
     n = nivel
 
     green = Fore.GREEN
@@ -125,27 +125,34 @@ def nivel(nivel, dificultad):
     with open('memory.json', 'r') as f:
         memory = json.load(f)
 
-    # valores iniciales
-    tablero, pistas = init(n, dificultad)
     msj = ""
 
-    puntaje = 0 # Puntaje inicial
-    ptos = 0
     tiempo = -1
 
-    game_state = {
-        'name': name,
-        'tablero': tablero,
-        'puntaje': puntaje,
-        'nivel': n,
-        'dificultad': dificultad,
-        'terminada': False,
-        'pistas': pistas
-    }
+    ptos = 0
 
-    key = name + " - " +  str(10*n + dificultad)
+    if not key:
+        key = name + " - " +  str(10*n + dificultad)
+        tablero, pistas = init(n, dificultad)
+        puntaje = 0 # Puntaje inicial
+        game_state = {
+            'name': name,
+            'tablero': tablero,
+            'puntaje': puntaje,
+            'nivel': n,
+            'dificultad': dificultad,
+            'terminada': False,
+            'pistas': pistas
+        }
 
-    memory[ key ] = game_state
+        memory[ key ] = game_state
+
+    game_state = memory[ key ]
+    puntaje = memory[key]["puntaje"]
+    tablero = memory[key]["tablero"]
+    pistas =  memory[key]["pistas"]
+
+    pistas = [(x,y) for x,y in pistas]
 
     with open('memory.json', 'w') as fp:
         json.dump(memory, fp)
@@ -274,7 +281,7 @@ def nuevapartida(msj=""):
 
         nivel(n + 1, m)
 
-def cargar():
+def cargar(msj=""):
     global name
 
     blue = Fore.BLUE
@@ -283,6 +290,8 @@ def cargar():
     white = Fore.WHITE
     red = Fore.RED
     cyan = Fore.CYAN
+
+    error_opcion = red + "Opción inválida" + white
 
     clear()
 
@@ -309,10 +318,10 @@ def cargar():
         memorias.append(key)
 
     for i, key in enumerate(memorias):
-        nombre, lvl = key.split(' - ')
+        nombre, _ = key.split(' - ')
         puntaje = str(memory[key]["puntaje"])
         n = str(memory[key]["nivel"] ** 2)
-        nivel = n + "X" + n
+        lvl = n + "X" + n
 
         dificultad = memory[key]["dificultad"]
         dificultad = ["Principiante","Intermedio","Avanzado"][dificultad - 1]
@@ -320,11 +329,19 @@ def cargar():
         print( "["+str(i + 1)+"] " + Fore.BLACK
                + Back.BLUE +" ⎙ "+ nombre +" "
                + Back.YELLOW + " " + puntaje + "★ "
-               + Back.WHITE + " " + nivel + " "
+               + Back.WHITE + " " + lvl + " "
                + Back.YELLOW + " " + dificultad + " ")
         print(Style.RESET_ALL)
 
-    key = memorias[input("Elegir opción: ")]
+    print(msj)
+
+    key = input("Elegir opción: ")
+    if key not in list([str(i) for i in range(1, len(memorias) + 1)]):
+        cargar(error_opcion)
+    key = memorias[int(key) - 1]
+    n = memory[key]["nivel"]
+    dif = memory[key]["dificultad"]
+    nivel(n, dif, key)
 
 def setname():
 
