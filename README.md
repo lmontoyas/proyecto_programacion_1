@@ -522,6 +522,45 @@ def is_over(tablero):
     return True
 ```
 
+## Segundo Avance:
+
+Ingreso de pistas
+
+```def generate(matrix, n, m):
+    N = n ** 2
+    vals = dfs([], n)
+
+    for i in range(N*N):
+        val = vals[i]
+        x, y = cords(i, N)
+        matrix[y][x] = val
+
+    #show(matrix)
+    #print()
+
+    pistas = {
+        (2, 1): 8,
+        (2, 2): 6,
+        (2, 3): 4,
+
+        (3, 1): 40,
+        (3, 2): 30,
+        (3, 3): 17
+    }
+
+    pistas_size = pistas[(n, m)]
+    pistas = list(range(N**2))
+    shuffle(pistas)
+    pistas = [cords(elem, N) for elem in pistas[:pistas_size]]
+
+    for i in range(N):
+        for j in range(N):
+            matrix[i][j] = matrix[i][j] if (j,i) in pistas else 0
+    return pistas
+```
+
+
+
 ## Autores:
 
 Luis Golac  
