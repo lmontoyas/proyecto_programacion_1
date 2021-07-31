@@ -4,11 +4,21 @@ from jugada import operar
 from jugada import is_over
 import json
 
-from colorama import Fore
+from colorama import Fore, Back, Style
 import timeit
+
+global name
+name = ""
+
+def showname():
+    global name
+    space = " "*(20 - len(name))
+    print(Back.YELLOW + Fore.BLACK + " ฅ^•ﻌ•^ฅ "+ Back.BLUE +" "+name + " ")
+    print(Style.RESET_ALL)
 
 def clear():
     print("\x1b[2J\x1b[H",end="")
+    showname()
 
 def showpuntaje(ptos, puntaje):
 
@@ -103,6 +113,7 @@ def nivel(nivel, dificultad):
     tiempo = -1
 
     game_state = {
+        'name': name,
         'tablero': tablero,
         'puntaje': puntaje,
         'nivel': n,
@@ -110,7 +121,9 @@ def nivel(nivel, dificultad):
         'terminada': False
     }
 
-    memory[10*n + dificultad] = game_state
+    key = name + " - " +  str(10*n + dificultad)
+
+    memory[ key ] = game_state
 
     with open('memory.json', 'w') as fp:
         json.dump(memory, fp)
@@ -240,10 +253,26 @@ def nuevapartida(msj=""):
         nivel(n + 1, m)
 
 
+def setname():
+
+    global name
+
+    image = '''.__           .__  .__
+|  |__   ____ |  | |  |   ____
+|  |  \_/ __ \|  | |  |  /  _ \.
+|   Y  \  ___/|  |_|  |_(  <_> )
+|___|  /\___  >____/____/\____/
+     \/     \/                  '''
+
+    clear()
+    print(image)
+    print()
+    name = input("Ingrese su nombre: ").lower().replace(" ","-")
+    pantalla()
+
 def pantalla(msj="", image=False, ganaste=False):
 
     clear()
-
     blue = Fore.BLUE
     green = Fore.GREEN
     white = Fore.WHITE
@@ -284,4 +313,7 @@ def pantalla(msj="", image=False, ganaste=False):
     if n == '1':
         nuevapartida()
 
-pantalla()
+def main():
+    setname()
+
+main()
