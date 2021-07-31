@@ -223,7 +223,7 @@ def nuevapartida(msj=""):
     n = input("Elija opción: ")
 
     if not n in ['1','2','3']:
-        nuevapartida(error_opcion)
+        return nuevapartida(error_opcion)
 
     n = int(n)
 
@@ -273,13 +273,15 @@ def nuevapartida(msj=""):
         if not m in ['1', '2', '3', '4']:
             msj = error_opcion
             continue
+        else:
+            msj = False
 
-        m = int(m)
+    m = int(m)
 
-        if m == 4:
-            return nuevapartida()
+    if m == 4:
+        return nuevapartida()
 
-        nivel(n + 1, m)
+    nivel(n + 1, m)
 
 def cargar(msj=""):
     global name
@@ -341,7 +343,7 @@ def cargar(msj=""):
 
     key = input("Elegir opción: ")
     if key not in list([str(i) for i in range(1, len(memorias) + 2)]):
-        cargar(error_opcion)
+        return cargar(error_opcion)
     key = int(key) - 1
     if key == len(memorias):
         return pantalla()
