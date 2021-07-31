@@ -558,6 +558,42 @@ Ingreso de pistas
             matrix[i][j] = matrix[i][j] if (j,i) in pistas else 0
     return pistas
 ```
+Ingreso de nombre
+
+```global name
+name = ""
+
+def showname():
+    global name
+    space = " "*(20 - len(name))
+    print(Back.YELLOW + Fore.BLACK + " ฅ^•ﻌ•^ฅ "+ Back.BLUE +" "+name + " ")
+    print(Style.RESET_ALL)
+```
+
+Muestra de puntaje
+
+```def showpuntaje(ptos, puntaje):
+
+    blue = Fore.BLUE
+    white = Fore.WHITE
+    cyan = Fore.CYAN
+    red = Fore.RED
+    green = Fore.GREEN
+
+    print("Puntaje", end="")
+    if ptos:
+        print("(", end="")
+        if ptos < 0:
+            print(red, end="")
+        else:
+            print(green+"+", end="")
+        print(str(ptos), end="")
+        print(white+")", end="")
+    print(":", end="")
+    print(blue,puntaje,end="")
+    print('★'+white)
+```
+
 
 
 
