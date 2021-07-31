@@ -80,8 +80,10 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
 
     start = timeit.default_timer()
 
-    F = input(white+"Ingrese FILA: "+blue)
-    C = input(white+"Ingrese COLUMNA: "+blue)
+    N = n ** 2
+
+    F = input(white+"Ingrese FILA (1-"+str(N)+"): "+blue)
+    C = input(white+"Ingrese COLUMNA (A-"+chr(ord('A') + N - 1)+"): "+blue)
     V = input(white+"Ingrese VALOR: "+blue)
     print(white)
 
