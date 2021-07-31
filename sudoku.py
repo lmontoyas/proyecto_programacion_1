@@ -139,7 +139,8 @@ def nivel(nivel, dificultad):
         'puntaje': puntaje,
         'nivel': n,
         'dificultad': dificultad,
-        'terminada': False
+        'terminada': False,
+        'pistas': pistas
     }
 
     key = name + " - " +  str(10*n + dificultad)
@@ -166,7 +167,6 @@ def nivel(nivel, dificultad):
 
     with open('memory.json', 'w') as fp:
         json.dump(memory, fp)
-
 
     image = """  ________  ________
  /  _____/ /  _____/ .
@@ -274,6 +274,57 @@ def nuevapartida(msj=""):
 
         nivel(n + 1, m)
 
+def cargar():
+    global name
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    yellow = Fore.YELLOW
+    white = Fore.WHITE
+    red = Fore.RED
+    cyan = Fore.CYAN
+
+    clear()
+
+    image = '''                    __  _
+  _________  ____  / /_(_)___  __  _____
+ / ___/ __ \/ __ \/ __/ / __ \/ / / / _ \.
+/ /__/ /_/ / / / / /_/ / / / / /_/ /  __/
+\___/\____/_/ /_/\__/_/_/ /_/\__,_/\___/
+                                         '''
+
+    print(image)
+    print()
+    print("Partidas guardadas:")
+    print()
+
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    memorias = []
+    for key in memory:
+        nombre, lvl = key.split(' - ')
+        if nombre != name:
+            continue
+        memorias.append(key)
+
+    for i, key in enumerate(memorias):
+        nombre, lvl = key.split(' - ')
+        puntaje = str(memory[key]["puntaje"])
+        n = str(memory[key]["nivel"] ** 2)
+        nivel = n + "X" + n
+
+        dificultad = memory[key]["dificultad"]
+        dificultad = ["Principiante","Intermedio","Avanzado"][dificultad - 1]
+
+        print( "["+str(i + 1)+"] " + Fore.BLACK
+               + Back.BLUE +" ⎙ "+ nombre +" "
+               + Back.YELLOW + " " + puntaje + "★ "
+               + Back.WHITE + " " + nivel + " "
+               + Back.YELLOW + " " + dificultad + " ")
+        print(Style.RESET_ALL)
+
+    key = memorias[input("Elegir opción: ")]
 
 def setname():
 
@@ -334,6 +385,8 @@ def pantalla(msj="", image=False, ganaste=False):
         pantalla(error_opcion, image, ganaste)
     if n == '1':
         nuevapartida()
+    if n == '2':
+        cargar()
 
 def main():
     setname()
