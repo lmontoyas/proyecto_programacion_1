@@ -228,7 +228,7 @@ def nuevapartida(msj=""):
     n = int(n)
 
     if n == 3:
-        pantalla()
+        return pantalla()
 
     msj = " "
 
@@ -277,7 +277,7 @@ def nuevapartida(msj=""):
         m = int(m)
 
         if m == 4:
-            nuevapartida()
+            return nuevapartida()
 
         nivel(n + 1, m)
 
@@ -350,6 +350,66 @@ def cargar(msj=""):
     dif = memory[key]["dificultad"]
     nivel(n, dif, key)
 
+def tablero():
+    global name
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    yellow = Fore.YELLOW
+    white = Fore.WHITE
+    red = Fore.RED
+    cyan = Fore.CYAN
+
+    clear()
+
+    image = '''  ____             _    _
+ |  _ \ __ _ _ __ | | _(_)_ __   __ _
+ | |_) / _` | '_ \| |/ / | '_ \ / _` |
+ |  _ < (_| | | | |   <| | | | | (_| |
+ |_| \_\__,_|_| |_|_|\_\_|_| |_|\__, |
+                                |___/ '''
+
+    print(image)
+    print()
+    print("Ranking de puntajes máximos:")
+    print()
+
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    memorias = []
+    ranking = {}
+
+    for key in memory:
+        nombre, lvl = key.split(' - ')
+        memorias.append(key)
+
+    for i, key in enumerate(memorias):
+        nombre, _ = key.split(' - ')
+        puntaje = memory[key]["puntaje"]
+        if not nombre in ranking:
+            ranking[nombre] = {}
+        ranking[nombre]["puntaje"] = max(puntaje ,ranking[nombre].get("puntaje", 0))
+        ranking[nombre]["partidas"] = ranking[nombre].get("partidas", 0) + 1
+
+    letop = [(-ranking[key]["puntaje"], key) for key in ranking]
+    letop.sort()
+
+    for i,(_, key) in enumerate(letop):
+        partidas = str(ranking[key]["partidas"])
+        puntaje = str(ranking[key]["puntaje"])
+        nombre = key
+
+        print( str(i + 1)+". " + Fore.BLACK
+               + Back.BLUE +" ★ "+ nombre +" "
+               + Back.YELLOW + " " + puntaje + "★ "
+               + Back.WHITE + " " + partidas + " partida/s jugadas ")
+
+        print(Style.RESET_ALL)
+
+    input("Presione [ENTER] para regresar al menu.")
+    pantalla()
+
 def setname():
 
     global name
@@ -411,6 +471,8 @@ def pantalla(msj="", image=False, ganaste=False):
         nuevapartida()
     if n == '2':
         cargar()
+    if n == '3':
+        tablero()
 
 def main():
     setname()
