@@ -2,8 +2,9 @@ from generador import init
 from display import mostrar
 from jugada import operar
 from jugada import is_over
-import json
 import sys
+
+import json
 
 from colorama import Fore, Back, Style
 import timeit
@@ -91,17 +92,17 @@ def turno(tablero, n, mensaje, pistas, ptos, puntaje, tiempo):
     F = input(white+"Ingrese FILA (1-"+str(N)+"): "+blue)
 
     if F.lower() in salir:
-        sys.exit()
+        return pantalla()
 
     C = input(white+"Ingrese COLUMNA (A-"+chr(ord('A') + N - 1)+"): "+blue)
 
     if C.lower() in salir:
-        sys.exit()
+        return pantalla()
 
     V = input(white+"Ingrese VALOR (1-"+str(N)+"): "+blue)
 
     if V.lower() in salir:
-        sys.exit()
+        return pantalla()
 
     print(white)
 
@@ -475,6 +476,8 @@ def pantalla(msj="", image=False, ganaste=False):
         cargar()
     if n == '3':
         tablero()
+
+    sys.exit()
 
 def main():
     setname()
