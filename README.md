@@ -593,8 +593,25 @@ Muestra de puntaje
     print(blue,puntaje,end="")
     print('★'+white)
 ```
+Salir del juego en curso 
 
+``` N = n ** 2
 
+    salir = "salir/quit/exit"
+
+    print("Para salir escriba: "+salir)
+    salir = salir.split("/")
+
+    F = input(white+"Ingrese FILA (1-"+str(N)+"): "+blue)
+
+    if F.lower() in salir:
+        return pantalla()
+
+    C = input(white+"Ingrese COLUMNA (A-"+chr(ord('A') + N - 1)+"): "+blue)
+
+    if C.lower() in salir:
+        return pantalla()
+```
 
 
 ## Autores:
