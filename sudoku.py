@@ -333,6 +333,9 @@ def cargar(msj=""):
                + Back.YELLOW + " " + dificultad + " ")
         print(Style.RESET_ALL)
 
+    if not memorias:
+        print("No hay partidas guardadas para tu usuario")
+
     print("["+str(len(memorias) + 1)+"] SALIR")
     print(msj)
 
@@ -341,7 +344,7 @@ def cargar(msj=""):
         cargar(error_opcion)
     key = int(key) - 1
     if key == len(memorias):
-        pantalla()
+        return pantalla()
     key = memorias[key]
     n = memory[key]["nivel"]
     dif = memory[key]["dificultad"]
