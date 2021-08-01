@@ -675,7 +675,7 @@ def cargar(msj=""):
     nivel(n, dif, key)
 ```
 
-Mostrar ranking y puntaje guardados de los usuarios
+Mostrar record de puntajes
 
 ![Alt text](images/ranking.png?raw=true "Title")
 
