@@ -602,7 +602,7 @@ N = n ** 2
 Continuar con la partida guardada
 
 
-![Alt text](images/continuar.png?raw=true "Title")
+![Alt text](images/cargar.png?raw=true "Title")
 
 ```python
 def cargar(msj=""):
