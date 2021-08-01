@@ -619,6 +619,9 @@ N = n ** 2
 
 Continuar con la partida guardada
 
+
+![Alt text](images/continuar.png?raw=true "Title")
+
 ```python
 def cargar(msj=""):
     global name
