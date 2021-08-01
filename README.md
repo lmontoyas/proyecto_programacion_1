@@ -561,6 +561,8 @@ def generate(matrix, n, m):
 ```
 Ingreso de nombre
 
+![Alt text](images/menu.png?raw=true "Title")
+
 ```python
 global name
 name = ""
