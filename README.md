@@ -697,7 +697,9 @@ def cargar(msj=""):
     nivel(n, dif, key)
 ```
 
-Mostrar partida y puntaje guardados del usuario
+Mostrar ranking y puntaje guardados de los usuarios
+
+![Alt text](images/ranking.png?raw=true "Title")
 
 ```python
 def tablero():
