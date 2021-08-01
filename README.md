@@ -526,7 +526,8 @@ def is_over(tablero):
 
 Ingreso de pistas
 
-```def generate(matrix, n, m):
+```python
+def generate(matrix, n, m):
     N = n ** 2
     vals = dfs([], n)
 
@@ -560,7 +561,8 @@ Ingreso de pistas
 ```
 Ingreso de nombre
 
-```global name
+```python
+global name
 name = ""
 
 def showname():
@@ -572,7 +574,8 @@ def showname():
 
 Muestra de puntaje
 
-```def showpuntaje(ptos, puntaje):
+```python
+def showpuntaje(ptos, puntaje):
 
     blue = Fore.BLUE
     white = Fore.WHITE
@@ -595,7 +598,8 @@ Muestra de puntaje
 ```
 Salir del juego en curso 
 
-``` N = n ** 2
+```python
+N = n ** 2
 
     salir = "salir/quit/exit"
 
@@ -612,6 +616,144 @@ Salir del juego en curso
     if C.lower() in salir:
         return pantalla()
 ```
+
+Continuar con la partida guardada
+
+```python
+def cargar(msj=""):
+    global name
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    yellow = Fore.YELLOW
+    white = Fore.WHITE
+    red = Fore.RED
+    cyan = Fore.CYAN
+
+    error_opcion = red + "Opción inválida" + white
+
+    clear()
+
+    image = '''                    __  _
+  _________  ____  / /_(_)___  __  _____
+ / ___/ __ \/ __ \/ __/ / __ \/ / / / _ \.
+/ /__/ /_/ / / / / /_/ / / / / /_/ /  __/
+\___/\____/_/ /_/\__/_/_/ /_/\__,_/\___/
+                                         '''
+
+    print(image)
+    print()
+    print("Partidas guardadas:")
+    print()
+
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    memorias = []
+    for key in memory:
+        nombre, lvl = key.split(' - ')
+        if nombre != name:
+            continue
+        memorias.append(key)
+
+    for i, key in enumerate(memorias):
+        nombre, _ = key.split(' - ')
+        puntaje = str(memory[key]["puntaje"])
+        n = str(memory[key]["nivel"] ** 2)
+        lvl = n + "X" + n
+
+        dificultad = memory[key]["dificultad"]
+        dificultad = ["Principiante","Intermedio","Avanzado"][dificultad - 1]
+
+        print( "["+str(i + 1)+"] " + Fore.BLACK
+               + Back.BLUE +" ⎙ "+ nombre +" "
+               + Back.YELLOW + " " + puntaje + "★ "
+               + Back.WHITE + " " + lvl + " "
+               + Back.YELLOW + " " + dificultad + " ")
+        print(Style.RESET_ALL)
+
+    if not memorias:
+        print("No hay partidas guardadas para tu usuario")
+
+    print("["+str(len(memorias) + 1)+"] SALIR")
+    print(msj)
+
+    key = input("Elegir opción: ")
+    if key not in list([str(i) for i in range(1, len(memorias) + 2)]):
+        return cargar(error_opcion)
+    key = int(key) - 1
+    if key == len(memorias):
+        return pantalla()
+    key = memorias[key]
+    n = memory[key]["nivel"]
+    dif = memory[key]["dificultad"]
+    nivel(n, dif, key)
+```
+
+Mostrar partida y puntaje guardados del usuario
+
+```python
+def tablero():
+    global name
+
+    blue = Fore.BLUE
+    green = Fore.GREEN
+    yellow = Fore.YELLOW
+    white = Fore.WHITE
+    red = Fore.RED
+    cyan = Fore.CYAN
+
+    clear()
+
+    image = '''  ____             _    _
+ |  _ \ __ _ _ __ | | _(_)_ __   __ _
+ | |_) / _` | '_ \| |/ / | '_ \ / _` |
+ |  _ < (_| | | | |   <| | | | | (_| |
+ |_| \_\__,_|_| |_|_|\_\_|_| |_|\__, |
+                                |___/ '''
+
+    print(image)
+    print()
+    print("Ranking de puntajes máximos:")
+    print()
+
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    memorias = []
+    ranking = {}
+
+    for key in memory:
+        nombre, lvl = key.split(' - ')
+        memorias.append(key)
+
+    for i, key in enumerate(memorias):
+        nombre, _ = key.split(' - ')
+        puntaje = memory[key]["puntaje"]
+        if not nombre in ranking:
+            ranking[nombre] = {}
+        ranking[nombre]["puntaje"] = max(puntaje ,ranking[nombre].get("puntaje", 0))
+        ranking[nombre]["partidas"] = ranking[nombre].get("partidas", 0) + 1
+
+    letop = [(-ranking[key]["puntaje"], key) for key in ranking]
+    letop.sort()
+
+    for i,(_, key) in enumerate(letop):
+        partidas = str(ranking[key]["partidas"])
+        puntaje = str(ranking[key]["puntaje"])
+        nombre = key
+
+        print( str(i + 1)+". " + Fore.BLACK
+               + Back.BLUE +" ★ "+ nombre +" "
+               + Back.YELLOW + " " + puntaje + "★ "
+               + Back.WHITE + " " + partidas + " partida/s jugadas ")
+
+        print(Style.RESET_ALL)
+
+    input("Presione [ENTER] para regresar al menu.")
+    pantalla()
+```
+
 
 
 ## Autores:
