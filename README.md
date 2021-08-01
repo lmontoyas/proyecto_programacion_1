@@ -753,7 +753,77 @@ def tablero():
     input("Presione [ENTER] para regresar al menu.")
     pantalla()
 ```
+Crear diccionario con datos en json
 
+```python
+def nivel(nivel, dificultad, key = False):
+    n = nivel
+
+    green = Fore.GREEN
+    white = Fore.WHITE
+
+    with open('memory.json', 'r') as f:
+        memory = json.load(f)
+
+    msj = ""
+
+    tiempo = -1
+
+    ptos = 0
+
+    if not key:
+        key = name + " - " +  str(10*n + dificultad)
+        tablero, pistas = init(n, dificultad)
+        puntaje = 0 # Puntaje inicial
+        game_state = {
+            'name': name,
+            'tablero': tablero,
+            'puntaje': puntaje,
+            'nivel': n,
+            'dificultad': dificultad,
+            'terminada': False,
+            'pistas': pistas
+        }
+
+        memory[ key ] = game_state
+
+    game_state = memory[ key ]
+    puntaje = memory[key]["puntaje"]
+    tablero = memory[key]["tablero"]
+    pistas =  memory[key]["pistas"]
+
+    pistas = [(x,y) for x,y in pistas]
+
+    with open('memory.json', 'w') as fp:
+        json.dump(memory, fp)
+
+    #############
+
+    while not is_over(tablero):
+        msj, ptos,tiempo = turno(tablero, n, msj, pistas, ptos, puntaje, tiempo)
+
+        puntaje += ptos
+
+        game_state['tablero'] = tablero
+        game_state['puntaje'] = puntaje
+
+        with open('memory.json', 'w') as fp:
+            json.dump(memory, fp)
+
+    game_state["terminada"] = True
+
+    with open('memory.json', 'w') as fp:
+        json.dump(memory, fp)
+
+    image = """  ________  ________
+ /  _____/ /  _____/ .
+/   \  ___/   \  ___
+\    \_\  \    \_\  \ .
+ \______  /\______  / .
+        \/        \/ """
+
+    pantalla("", image, puntaje)
+```
 
 
 ## Autores:
