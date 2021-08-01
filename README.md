@@ -14,6 +14,14 @@ $> python sudoku.py
 4. [Jugada](#jugada)
 5. [Autores](#autores)
 
+## Entrega final:
+6. [Ingreso de pistas](#Ingreso de pistas)
+7. [Ingreso de nombre](#Ingreso de nombre)
+8. [Salir del juego en curso](#Salir del juego en curso)
+9. [Continuar con la partida guardada](#Continuar con la partida guardada)
+10. [Mostrar record de puntajes](#Mostrar record de puntajes)
+11. [Crear diccionario con datos en json](#Crear diccionario con datos en json)
+
 # Módulos
 ## Generador
 
@@ -522,9 +530,9 @@ def is_over(tablero):
     return True
 ```
 
-## Segundo Avance:
+# Entrega final:
 
-Ingreso de pistas
+## Ingreso de pistas
 
 ![Alt text](images/tiempo.png?raw=true "Title")
 
@@ -561,7 +569,7 @@ def generate(matrix, n, m):
             matrix[i][j] = matrix[i][j] if (j,i) in pistas else 0
     return pistas
 ```
-Ingreso de nombre
+## Ingreso de nombre
 
 ![Alt text](images/menu.png?raw=true "Title")
 
@@ -576,7 +584,7 @@ def showname():
     print(Style.RESET_ALL)
 ```
 
-Salir del juego en curso 
+## Salir del juego en curso 
 
 ![Alt text](images/penalizaci%C3%B3n.png?raw=true "Title")
 
@@ -599,7 +607,7 @@ N = n ** 2
         return pantalla()
 ```
 
-Continuar con la partida guardada
+## Continuar con la partida guardada
 
 
 ![Alt text](images/cargar.png?raw=true "Title")
@@ -675,7 +683,7 @@ def cargar(msj=""):
     nivel(n, dif, key)
 ```
 
-Mostrar record de puntajes
+## Mostrar record de puntajes
 
 ![Alt text](images/ranking.png?raw=true "Title")
 
@@ -740,7 +748,7 @@ def tablero():
     input("Presione [ENTER] para regresar al menu.")
     pantalla()
 ```
-Crear diccionario con datos en json
+## Crear diccionario con datos en json
 
 ```python
 def nivel(nivel, dificultad, key = False):
