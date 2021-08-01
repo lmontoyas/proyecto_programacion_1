@@ -576,31 +576,9 @@ def showname():
     print(Style.RESET_ALL)
 ```
 
-Muestra de puntaje
-
-```python
-def showpuntaje(ptos, puntaje):
-
-    blue = Fore.BLUE
-    white = Fore.WHITE
-    cyan = Fore.CYAN
-    red = Fore.RED
-    green = Fore.GREEN
-
-    print("Puntaje", end="")
-    if ptos:
-        print("(", end="")
-        if ptos < 0:
-            print(red, end="")
-        else:
-            print(green+"+", end="")
-        print(str(ptos), end="")
-        print(white+")", end="")
-    print(":", end="")
-    print(blue,puntaje,end="")
-    print('★'+white)
-```
 Salir del juego en curso 
+
+![Alt text](images/penalizaci%C3%B3n.png?raw=true "Title")
 
 ```python
 N = n ** 2
