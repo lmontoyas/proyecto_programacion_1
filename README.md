@@ -526,6 +526,8 @@ def is_over(tablero):
 
 Ingreso de pistas
 
+![Alt text](images/tiempo.png?raw=true "Title")
+
 ```python
 def generate(matrix, n, m):
     N = n ** 2
